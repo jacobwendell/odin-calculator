@@ -1,3 +1,13 @@
+// Comments for me to remmeber what to do tomorrow
+// First: Look at Add button adn refactor to useable code for other buttons
+// Second: Fix equal function to have more cases
+// Third: Fix equal button type error due to toString Method
+// Fourth: Continue with project, after button functionality not much more to do
+// Fifth, add the decimal button to work
+// Sixth: Begin to style
+// Seven: Check edge cases and any bugs.  Probably should be Sixth
+// Goal is to push this foward tomorrow
+
 // Display Variables
 let displayValue = "";
 let upperDisplayValue = "";
