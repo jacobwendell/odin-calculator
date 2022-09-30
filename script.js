@@ -14,12 +14,45 @@ const subtractButton = document.querySelector("#ubtraction");
 const multiplyButton = document.querySelector("#multiplication");
 const equalButton = document.querySelector("#equals");
 
+
+// When pressing operator button
+function equalFunction() {
+    if (upperDisplayValue.includes("+")) {
+        var newValue = upperDisplayValue.split(" + ");
+        return operate("+", newValue[0], newValue[1]);
+    } 
+}
+
+function presentingNumber() {
+    displayValue = equalFunction();
+    console.log(displayValue);
+    showDisplayValue(displayValue);
+    upperDisplayValue = displayValue.toString();
+    showUpperDisplayValue(upperDisplayValue);
+}
+
+addButton.addEventListener("click", function() {
+    if (upperDisplayValue.includes("+") === true) {
+        presentingNumber();
+    } else {
+        displayValue = "";
+        showDisplayValue();
+        upperDisplayValue += " + ";
+        showUpperDisplayValue(upperDisplayValue);
+    }
+})
+
+// When equal is pressed
+equalButton.addEventListener("click", function() {
+    presentingNumber();
+});
+
 // When button is touched, value is displayed
 const numButtons = document.querySelectorAll(".num-button");
 numButtons.forEach(element => {
     element.addEventListener("click", function() {
-        displayValue += element.id;
-        showDisplayValue(displayValue);
+        upperDisplayValue += element.id;
+        showUpperDisplayValue(upperDisplayValue);
     })
 });
 
