@@ -4,6 +4,7 @@ let upperDisplayValue = "";
 const autoClear = document.querySelector("#auto-clear");
 const clearOne = document.querySelector("#clear");
 const display = document.querySelector("#display");
+const upperDisplay = document.querySelector("#upper-display");
 
 // When button is touched, value is displayed
 const numButtons = document.querySelectorAll(".num-button");
@@ -18,6 +19,23 @@ numButtons.forEach(element => {
 function showDisplayValue(value) {
     display.textContent = value;
 }
+
+function showUpperDisplayValue(value) {
+    upperDisplay.textContent = value;
+}
+
+//functions to clear display value and all values
+clearOne.addEventListener("click", function() {
+    displayValue = "";
+    showDisplayValue(displayValue);
+})
+
+autoClear.addEventListener("click", function() {
+    displayValue = "";
+    upperDisplayValue = "";
+    showDisplayValue(displayValue);
+    showUpperDisplayValue(upperDisplayValue);
+})
 
 // Operations
 function add(num1, num2) {
