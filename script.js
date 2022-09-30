@@ -1,3 +1,23 @@
+// Display Functions
+let displayValue = "";
+let upperDisplayValue = "";
+const autoClear = document.querySelector("#auto-clear");
+const clearOne = document.querySelector("#clear");
+const display = document.querySelector("#display");
+
+// When button is touched, value is displayed
+const numButtons = document.querySelectorAll(".num-button");
+numButtons.forEach(element => {
+    element.addEventListener("click", function() {
+        displayValue += element.id;
+        showDisplayValue(displayValue);
+    })
+});
+
+//function to show display value
+function showDisplayValue(value) {
+    display.textContent = value;
+}
 
 // Operations
 function add(num1, num2) {

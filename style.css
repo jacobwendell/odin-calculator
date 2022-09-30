@@ -12,14 +12,14 @@ body {
 
 #calculator {
     width: 400px;
-    height: 500px;
+    height: 550px;
     background-color: grey;
     padding: 15px;
 }
 
 #upper-display {
     width: 400px;
-    height: 30px;
+    height: 50px;
     margin: 0 auto;
     background-color: green;
     display: flex;
@@ -30,7 +30,7 @@ body {
 
 #display {
     width: 400px;
-    height: 50px;
+    height: 80px;
     margin: 0 auto;
     background-color: yellow;
     display: flex;
