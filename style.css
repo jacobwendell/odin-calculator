@@ -1,0 +1,17 @@
+#calculator {
+    width: 300px;
+    height: 500px;
+    background-color: grey;
+    padding: 10px;
+}
+
+#upper-display {
+    width: 90%;
+    height: 30px;
+    margin: 0 auto;
+    background-color: green;
+}
+
+#display {
+    
+}
