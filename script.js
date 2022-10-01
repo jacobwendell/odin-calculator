@@ -146,6 +146,15 @@ function showUpperDisplayValue(value) {
 clearOne.addEventListener("click", function() {
     displayValue = "";
     showDisplayValue(displayValue);
+    if (upperDisplayValue[upperDisplayValue.length - 1] === " ") {
+        var replacedValue = upperDisplayValue.slice(0, upperDisplayValue.length - 3)
+        upperDisplayValue = replacedValue;
+        showUpperDisplayValue(upperDisplayValue);
+    } else {
+        var replacedValue = upperDisplayValue.slice(0, upperDisplayValue.length -1 );
+        upperDisplayValue = replacedValue;
+        showUpperDisplayValue(upperDisplayValue);
+    }
 })
 
 autoClear.addEventListener("click", function() {
