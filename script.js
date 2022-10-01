@@ -8,7 +8,10 @@
 // Seven: Check edge cases and any bugs.  Probably should be Sixth
 // Goal is to push this foward tomorrow
 
+// Bug - Clear needs to clear displayUpper Value
+
 // Display Variables
+const operators = ["÷", "+", "-", "x", "%"];
 let displayValue = "";
 let upperDisplayValue = "";
 const autoClear = document.querySelector("#auto-clear");
@@ -20,7 +23,7 @@ const upperDisplay = document.querySelector("#upper-display");
 const moduloButton  = document.querySelector("#modulo");
 const divideButton = document.querySelector("#divide");
 const addButton = document.querySelector("#addition");
-const subtractButton = document.querySelector("#ubtraction");
+const subtractButton = document.querySelector("#subtraction");
 const multiplyButton = document.querySelector("#multiplication");
 const equalButton = document.querySelector("#equals");
 
@@ -30,26 +33,88 @@ function equalFunction() {
     if (upperDisplayValue.includes("+")) {
         var newValue = upperDisplayValue.split(" + ");
         return operate("+", newValue[0], newValue[1]);
-    } 
+    } else if (upperDisplayValue.includes("÷")) {
+        var newValue = upperDisplayValue.split(" ÷ ");
+        return operate("/", newValue[0], newValue[1]);
+    } else if (upperDisplayValue.includes("-")) {
+        var newValue = upperDisplayValue.split(" - ");
+        return operate("-", newValue[0], newValue[1]);
+    } else if (upperDisplayValue.includes("x")) {
+        var newValue = upperDisplayValue.split(" x ");
+        return operate("*", newValue[0], newValue[1]);
+    } else if (upperDisplayValue.includes("%")) {
+        var newValue = upperDisplayValue.split(" % ");
+        return operate("%", newValue[0], newValue[1]);
+    }
 }
 
 function presentingNumber() {
     displayValue = equalFunction();
-    console.log(displayValue);
     showDisplayValue(displayValue);
-    upperDisplayValue = displayValue.toString();
-    showUpperDisplayValue(upperDisplayValue);
-}
-
-addButton.addEventListener("click", function() {
-    if (upperDisplayValue.includes("+") === true) {
-        presentingNumber();
+    if (displayValue === 0){
+        upperDisplayValue = "";
+        showUpperDisplayValue(upperDisplayValue);
     } else {
-        displayValue = "";
-        showDisplayValue();
-        upperDisplayValue += " + ";
+        upperDisplayValue = displayValue.toString();
         showUpperDisplayValue(upperDisplayValue);
     }
+}
+
+function replacingOperator(operator) {
+    if (upperDisplayValue.includes("÷")) {
+        upperDisplayValue.replace("÷", operator);
+    } else if (upperDisplayValue.includes("+")) {
+        upperDisplayValue.replace("+", operator);
+    } else if (upperDisplayValue.includes("-")) {
+        upperDisplayValue.replace("-", operator);
+    } else if (upperDisplayValue.includes("x")) {
+        upperDisplayValue.replace("x", operator)
+    } else if (upperDisplayValue.includes("%")) {
+        upperDisplayValue.replace("%", operator);
+    }
+}
+
+function getNumberValues(operator) {
+    if (upperDisplayValue.includes(operator)) {
+        presentingNumber();
+        upperDisplayValue += ` ${operator} `;
+        showUpperDisplayValue(upperDisplayValue);
+    } else if (upperDisplayValue.includes(operators[0])) {
+        replacingOperator(operator);
+    } else if (upperDisplayValue.includes(operators[1])) {
+        replacingOperator(operator);
+    } else if (upperDisplayValue.includes(operators[2])) {
+        replacingOperator(operator);
+    } else if (upperDisplayValue.includes(operators[3])) {
+        replacingOperator(operator);
+    } else if (upperDisplayValue.includes(operators[4])) {
+        replacingOperator(operator);
+    }else {
+        displayValue = "";
+        showDisplayValue(displayValue);
+        upperDisplayValue += ` ${operator} `;
+        showUpperDisplayValue(upperDisplayValue);
+    }
+}
+//Operation Buttons
+divideButton.addEventListener("click", function() {
+    getNumberValues("÷");
+})
+
+addButton.addEventListener("click", function() {
+    getNumberValues("+");
+})
+
+subtractButton.addEventListener("click", function() {
+    getNumberValues("-");
+})
+
+multiplyButton.addEventListener("click", function() {
+    getNumberValues("x");
+})
+
+moduloButton.addEventListener("click", function() {
+    getNumberValues("%");
 })
 
 // When equal is pressed
