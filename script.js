@@ -1,11 +1,5 @@
 // Comments for me to remmeber what to do tomorrow
-// First: Look at Add button adn refactor to useable code for other buttons
-// Second: Fix equal function to have more cases
-// Third: Fix equal button type error due to toString Method
-// Fourth: Continue with project, after button functionality not much more to do
-// Fifth, add the decimal button to work
 // Sixth: Begin to style
-// Seven: Check edge cases and any bugs.  Probably should be Sixth
 // Goal is to push this foward tomorrow
 
 // Bug - Clear needs to clear displayUpper Value
@@ -26,8 +20,19 @@ const addButton = document.querySelector("#addition");
 const subtractButton = document.querySelector("#subtraction");
 const multiplyButton = document.querySelector("#multiplication");
 const equalButton = document.querySelector("#equals");
+const decimalButton = document.querySelector("#decimal");
 
-
+// Decimal button pressed
+decimalButton.addEventListener("click", function() {
+    var splitValues = upperDisplayValue.split(" ");
+    if (upperDisplayValue.includes(".") === false) {
+        upperDisplayValue += ".";
+        showUpperDisplayValue(upperDisplayValue);
+    } else if (splitValues[2].includes(".") === false) {
+        upperDisplayValue += ".";
+        showUpperDisplayValue(upperDisplayValue);
+    }
+})
 // When pressing operator button
 function equalFunction() {
     if (upperDisplayValue.includes("+")) {
@@ -96,36 +101,58 @@ function getNumberValues(operator) {
         showUpperDisplayValue(upperDisplayValue);
     }
 }
+
+function operatorButtonFunction(operator) {
+    if (upperDisplayValue === "Infinity") {
+        upperDisplayValue = "";
+        showUpperDisplayValue(upperDisplayValue);
+    } else if (upperDisplayValue === "") {
+        upperDisplayValue = "0";
+        getNumberValues(operator);
+    } else {
+        getNumberValues(operator);
+    }
+}
 //Operation Buttons
 divideButton.addEventListener("click", function() {
-    getNumberValues("÷");
+    operatorButtonFunction("÷")
 })
 
 addButton.addEventListener("click", function() {
-    getNumberValues("+");
+    operatorButtonFunction("+");
 })
 
 subtractButton.addEventListener("click", function() {
-    getNumberValues("-");
+    operatorButtonFunction("-");
 })
 
 multiplyButton.addEventListener("click", function() {
-    getNumberValues("x");
+    operatorButtonFunction("x");
 })
 
 moduloButton.addEventListener("click", function() {
-    getNumberValues("%");
+    operatorButtonFunction("%");
 })
 
 // When equal is pressed
 equalButton.addEventListener("click", function() {
-    presentingNumber();
+    if (upperDisplayValue === "") {
+        console.log("Doing nothing because equal equals nothing");
+    } else if (upperDisplayValue === "Infinity") {
+        upperDisplayValue = "";
+        showUpperDisplayValue(upperDisplayValue);
+    } else {
+        presentingNumber();
+    }
 });
 
 // When button is touched, value is displayed
 const numButtons = document.querySelectorAll(".num-button");
 numButtons.forEach(element => {
     element.addEventListener("click", function() {
+        if (upperDisplayValue === "Infinity") {
+            upperDisplayValue = "";
+        }
         upperDisplayValue += element.id;
         showUpperDisplayValue(upperDisplayValue);
         displayValue = "";
@@ -146,6 +173,9 @@ function showUpperDisplayValue(value) {
 clearOne.addEventListener("click", function() {
     displayValue = "";
     showDisplayValue(displayValue);
+    if (upperDisplayValue === "Infinity") {
+        upperDisplayValue = "";
+    }
     if (upperDisplayValue[upperDisplayValue.length - 1] === " ") {
         var replacedValue = upperDisplayValue.slice(0, upperDisplayValue.length - 3)
         upperDisplayValue = replacedValue;
