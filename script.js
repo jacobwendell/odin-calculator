@@ -32,19 +32,19 @@ const equalButton = document.querySelector("#equals");
 function equalFunction() {
     if (upperDisplayValue.includes("+")) {
         var newValue = upperDisplayValue.split(" + ");
-        return operate("+", newValue[0], newValue[1]);
+        return Math.round(operate("+", newValue[0], newValue[1]) * 100) / 100;
     } else if (upperDisplayValue.includes("÷")) {
         var newValue = upperDisplayValue.split(" ÷ ");
-        return operate("/", newValue[0], newValue[1]);
+        return Math.round(operate("/", newValue[0], newValue[1]) * 100) / 100;
     } else if (upperDisplayValue.includes("-")) {
         var newValue = upperDisplayValue.split(" - ");
-        return operate("-", newValue[0], newValue[1]);
+        return Math.round(operate("-", newValue[0], newValue[1]) * 100) / 100;
     } else if (upperDisplayValue.includes("x")) {
         var newValue = upperDisplayValue.split(" x ");
-        return operate("*", newValue[0], newValue[1]);
+        return Math.round(operate("*", newValue[0], newValue[1]) * 100) / 100;
     } else if (upperDisplayValue.includes("%")) {
         var newValue = upperDisplayValue.split(" % ");
-        return operate("%", newValue[0], newValue[1]);
+        return Math.round(operate("%", newValue[0], newValue[1]) * 100) / 100;
     }
 }
 
@@ -128,6 +128,8 @@ numButtons.forEach(element => {
     element.addEventListener("click", function() {
         upperDisplayValue += element.id;
         showUpperDisplayValue(upperDisplayValue);
+        displayValue = "";
+        showDisplayValue(displayValue);
     })
 });
 
