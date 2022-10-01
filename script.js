@@ -2,7 +2,7 @@
 // Sixth: Begin to style
 // Goal is to push this foward tomorrow
 
-// Bug - Clear needs to clear displayUpper Value
+// Bug - Negatie numbers not working
 
 // Display Variables
 const operators = ["÷", "+", "-", "x", "%"];

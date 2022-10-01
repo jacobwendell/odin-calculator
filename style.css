@@ -1,42 +1,59 @@
 body {
     margin: 0;
+    background: url("https://wallpapercave.com/wp/wp6517811.jpg");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: rgb(231, 246, 242);
+    text-shadow: 5px 5px rgb(44, 51, 51);
 }
 
 .container {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 #calculator {
     width: 400px;
     height: 550px;
-    background-color: grey;
+    background-color: rgb(44, 51, 51);
     padding: 15px;
+    border: 5px solid rgba(255, 255, 255, 0.8);
 }
 
 #upper-display {
     width: 400px;
     height: 50px;
     margin: 0 auto;
-    background-color: green;
+    background-color: rgb(57, 91, 100);
+    border-bottom: 2px solid rgb(165, 201, 202);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2em;
+    font-size: 1.3em;
+    color: rgb(231, 246, 242);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 #display {
     width: 400px;
     height: 80px;
     margin: 0 auto;
-    background-color: yellow;
+    background-color: rgb(57, 91, 100);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    color: rgb(231, 246, 242);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .button-holder {
@@ -61,4 +78,27 @@ body {
 .button {
     padding: 20px;
     font-size: 1.6rem;
+    border-radius: 10px;
+    background-color: rgb(165, 201, 202);
+    color: rgb(44, 51, 51);
+    transition: .3s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.button:focus {
+    background-color: rgb(231, 246, 242);
+}
+
+footer {
+    color: rgb(231, 246, 242);
+    text-shadow: 2px 2px rgb(44, 51, 51);
+    font-size: 1.3rem;
+}
+
+a {
+    color: rgb(231, 246, 242);
 }
