@@ -2,7 +2,7 @@
 // Sixth: Begin to style
 // Goal is to push this foward tomorrow
 
-// Bug - Negatie numbers not working
+// Bug - Negatie numbers not working, minus sign same as negative
 
 // Display Variables
 const operators = ["÷", "+", "-", "x", "%"];
