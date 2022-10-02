@@ -41,15 +41,15 @@ function equalFunction() {
     } else if (upperDisplayValue.includes("÷")) {
         var newValue = upperDisplayValue.split(" ÷ ");
         return Math.round(operate("/", newValue[0], newValue[1]) * 100) / 100;
-    } else if (upperDisplayValue.includes("-")) {
-        var newValue = upperDisplayValue.split(" - ");
-        return Math.round(operate("-", newValue[0], newValue[1]) * 100) / 100;
     } else if (upperDisplayValue.includes("x")) {
         var newValue = upperDisplayValue.split(" x ");
         return Math.round(operate("*", newValue[0], newValue[1]) * 100) / 100;
     } else if (upperDisplayValue.includes("%")) {
         var newValue = upperDisplayValue.split(" % ");
         return Math.round(operate("%", newValue[0], newValue[1]) * 100) / 100;
+    }  else if (upperDisplayValue.includes("-")) {
+        var newValue = upperDisplayValue.split(" - ");
+        return Math.round(operate("-", newValue[0], newValue[1]) * 100) / 100;
     }
 }
 
@@ -106,7 +106,7 @@ function getNumberValues(operator) {
         upperDisplayValue += ` ${operator} `;
         showUpperDisplayValue(upperDisplayValue);
     } else if (upperDisplayValue.includes(operators[0])) {
-        replacingOperator(operator);
+            replacingOperator(operator);
     } else if (upperDisplayValue.includes(operators[1])) {
         replacingOperator(operator);
     } else if (upperDisplayValue.includes(operators[2])) {
@@ -115,7 +115,7 @@ function getNumberValues(operator) {
         replacingOperator(operator);
     } else if (upperDisplayValue.includes(operators[4])) {
         replacingOperator(operator);
-    }else {
+    } else {
         displayValue = "";
         showDisplayValue(displayValue);
         upperDisplayValue += ` ${operator} `;
@@ -172,6 +172,8 @@ const numButtons = document.querySelectorAll(".num-button");
 numButtons.forEach(element => {
     element.addEventListener("click", function() {
         if (upperDisplayValue === "Infinity") {
+            upperDisplayValue = "";
+        } else if (upperDisplayValue === "NaN") {
             upperDisplayValue = "";
         }
         upperDisplayValue += element.id;
