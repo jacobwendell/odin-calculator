@@ -53,9 +53,30 @@ function equalFunction() {
     }
 }
 
+function checkIfOperator() {
+    if (upperDisplayValue.includes("÷") === true) {
+        displayValue = equalFunction();
+        showDisplayValue(displayValue);
+    } else if (upperDisplayValue.includes("+") === true) {
+        displayValue = equalFunction();
+        showDisplayValue(displayValue);
+    } else if (upperDisplayValue.includes("-") === true) {
+        displayValue = equalFunction();
+        showDisplayValue(displayValue);
+    } else if (upperDisplayValue.includes("x") === true) {
+        displayValue = equalFunction();
+        showDisplayValue(displayValue);
+    } else if (upperDisplayValue.includes("%") === true) {
+        displayValue = equalFunction();
+        showDisplayValue(displayValue);
+    } else {
+        displayValue = upperDisplayValue;
+        showDisplayValue(displayValue);
+    }
+}   
+
 function presentingNumber() {
-    displayValue = equalFunction();
-    showDisplayValue(displayValue);
+    checkIfOperator();
     if (displayValue === 0){
         upperDisplayValue = "";
         showUpperDisplayValue(upperDisplayValue);
