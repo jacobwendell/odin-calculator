@@ -1,6 +1,32 @@
 // Use variables to hold and display items
 // X + y = Z , X becomes Z and then inputted value equals Y then compute again
+// MainDisplayValue becomes value1 after operator pressed
+let value1;
+let value2;
+let displayValue = "";
+let mainDisplayValue = "";
 
+// Operation Buttons and functions
+
+
+// Function for number buttons
+const numButtons = document.querySelectorAll(".num-button");
+numButtons.forEach(element => {
+    element.addEventListener("click", function() {
+        displayValue  += element.id;
+        mainDisplayValue += element.id;
+        showBothDisplays();
+    })
+})
+
+
+// For Displaying the values on the calculator
+const upperDisplay = document.querySelector("#upper-display");
+const mainDisplay = document.querySelector("#display");
+function showBothDisplays() {
+    upperDisplay.textContent = displayValue;
+    mainDisplay.textContent = mainDisplayValue;
+}
 
 // Operations
 function add(num1, num2) {
