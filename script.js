@@ -81,7 +81,7 @@ equalButton.addEventListener("click", function() {
         var splittedValues = displayValue.split(operator);
         value1 = Number(splittedValues[0])
         value2 = Number(splittedValues[1]);
-        finalValue = operate(operator, value1, value2);
+        finalValue = Math.round(operate(operator, value1, value2) * 100) / 100;
         mainDisplayValue = finalValue;
         showBothDisplays();
     } 
@@ -96,7 +96,6 @@ function newValues() {
         console.log("No operator")
     } else {
         let splittedValues = displayValue.split(operator);
-        console.log(splittedValues);
         value1 = splittedValues[0];
         value2 = splittedValues[1];
     }
