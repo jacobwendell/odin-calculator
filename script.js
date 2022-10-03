@@ -6,7 +6,7 @@ let value2;
 let finalValue;
 let displayValue = "";
 let mainDisplayValue = "";
-let operator = "+";
+let operator;
 
 
 // Operation Buttons and functions
@@ -17,35 +17,69 @@ const subractButton = document.querySelector("#subtract");
 const multiplyButton = document.querySelector("#multiply");
 const equalButton = document.querySelector("#equals");
 
-addButton.addEventListener("click", function() {
+// Function for operator buttons and their functionality
+function operatorButtonStatements(opp) {
     if (displayValue === "") {
-        console.log("Do nothing, need number input first");
-    } else if (displayValue.includes("+") === false) {
-        value1 = Number(mainDisplayValue);
-        mainDisplayValue = "";
-        displayValue += " + ";
-        operator = "+";
-        showBothDisplays();
+        console.log('Doing nothing, need a number');
+    } else if (displayValue.includes(operator)) {
+        console.log("Have an operator already");
+    } else if (displayValue.includes("-") && operator !== "-") {
+        value1Converter(opp);
+    } else if (displayValue.includes(opp) === false) {
+        value1Converter(opp);
     }
+}
+
+// For Getting Value1 and Operator
+function value1Converter(opp) {
+    value1 = Number(mainDisplayValue);
+    mainDisplayValue = "";
+    displayValue += ` ${opp} `;
+    operator = opp;
+    showBothDisplays();
+}
+
+moduloButton.addEventListener("click", function() {
+    operatorButtonStatements("%");
 })
+
+divisionButton.addEventListener("click", function() {
+    operatorButtonStatements("÷")
+})
+
+addButton.addEventListener("click", function() {
+    operatorButtonStatements("+");
+})
+
+subractButton.addEventListener("click", function() {
+    operatorButtonStatements("-");
+})
+
+multiplyButton.addEventListener("click", function() {
+    operatorButtonStatements("x");
+})
+
+
 
 equalButton.addEventListener("click", function() {
     if (mainDisplayValue === finalValue) {
         console.log("");
     } else if (displayValue.includes(operator) === true) {
         value2 = Number(mainDisplayValue);
-        finalValue = operate('+', value1, value2);
+        finalValue = operate(operator, value1, value2);
         mainDisplayValue = finalValue;
         showBothDisplays();
     } 
 })
+
+
 
 // Function for number buttons
 const numButtons = document.querySelectorAll(".num-button");
 numButtons.forEach(element => {
     element.addEventListener("click", function() {
         if (mainDisplayValue === finalValue){
-            console.log("")
+            console.log("Final Value achieved, clear to compute");
         } else {
             displayValue  += element.id;
             mainDisplayValue += element.id;
@@ -92,7 +126,7 @@ function operate(operator, num1, num2) {
         return subtract(num1, num2);
     } else if (operator === "*") {
         return multiply(num1, num2);
-    } else if (operator === "/") {
+    } else if (operator === "÷") {
         return divide(num1, num2);
     } else if (operator === "%") {
         return modulo(num1, num2);
