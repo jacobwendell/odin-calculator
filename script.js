@@ -17,6 +17,19 @@ const subractButton = document.querySelector("#subtract");
 const multiplyButton = document.querySelector("#multiply");
 const equalButton = document.querySelector("#equals");
 
+// Decimal Button
+const decimalButton = document.querySelector("#decimal");
+decimalButton.addEventListener("click", function() {
+    if (mainDisplayValue.includes(".")) {
+        console.log('Do nothing, already has a decimal');
+    } else {
+        displayValue += ".";
+        mainDisplayValue += "."
+        showBothDisplays();
+    }
+})
+
+
 // Function for operator buttons and their functionality
 function operatorButtonStatements(opp) {
     if (displayValue === "") {
@@ -65,7 +78,9 @@ equalButton.addEventListener("click", function() {
     if (mainDisplayValue === finalValue) {
         console.log("");
     } else if (displayValue.includes(operator) === true) {
-        value2 = Number(mainDisplayValue);
+        var splittedValues = displayValue.split(operator);
+        value1 = Number(splittedValues[0])
+        value2 = Number(splittedValues[1]);
         finalValue = operate(operator, value1, value2);
         mainDisplayValue = finalValue;
         showBothDisplays();
@@ -76,11 +91,25 @@ equalButton.addEventListener("click", function() {
 const clearButton = document.querySelector("#clear")
 const autoClearButton = document.querySelector("#auto-clear");
 
+function newValues() {
+    if (operator === null) {
+        console.log("No operator")
+    } else {
+        let splittedValues = displayValue.split(operator);
+        console.log(splittedValues);
+        value1 = splittedValues[0];
+        value2 = splittedValues[1];
+    }
+
+}
+
 clearButton.addEventListener("click", function() {
     if (displayValue[displayValue.length - 1] === " ") {
         displayValue = displayValue.substring(0, displayValue.length - 2);
+        newValues();
     } else  {
         displayValue = displayValue.substring(0, displayValue.length - 1);
+        newValues();
     }
     mainDisplayValue = displayValue;
     showBothDisplays();
