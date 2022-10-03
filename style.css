@@ -86,6 +86,7 @@ h1 {
 
 .button:hover {
     transform: scale(1.05);
+    background-color: rgb(231, 246, 242);
     cursor: pointer;
 }
 
