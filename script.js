@@ -72,7 +72,28 @@ equalButton.addEventListener("click", function() {
     } 
 })
 
+// Clear buttons 
+const clearButton = document.querySelector("#clear")
+const autoClearButton = document.querySelector("#auto-clear");
 
+clearButton.addEventListener("click", function() {
+    if (displayValue[displayValue.length - 1] === " ") {
+        displayValue = displayValue.substring(0, displayValue.length - 2);
+    } else  {
+        displayValue = displayValue.substring(0, displayValue.length - 1);
+    }
+    mainDisplayValue = displayValue;
+    showBothDisplays();
+})
+
+autoClearButton.addEventListener("click", function() {
+    displayValue = "";
+    value1 = null;
+    value2 = null;
+    finalValue = null;
+    mainDisplayValue = "";
+    showBothDisplays();
+})
 
 // Function for number buttons
 const numButtons = document.querySelectorAll(".num-button");
