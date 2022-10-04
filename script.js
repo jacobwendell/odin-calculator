@@ -6,7 +6,7 @@ let value2;
 let finalValue;
 let displayValue = "";
 let mainDisplayValue = "";
-let operator;
+let operator = "a";
 
 
 // Operation Buttons and functions
@@ -25,6 +25,26 @@ decimalButton.addEventListener("click", function() {
     } else {
         displayValue += ".";
         mainDisplayValue += "."
+        showBothDisplays();
+    }
+})
+
+// Negatibve button 
+const negativeButton = document.querySelector("#negative");
+negativeButton.addEventListener("click", function() {
+    if (displayValue === "" || displayValue === 0) {
+        console.log("Doing Nothing, need a number");
+    } else if (displayValue.includes(operator) === true) {
+        let disIndex = displayValue.indexOf(operator);
+        let remainder = displayValue.substring(0, disIndex + 2);
+        let value = displayValue.substring(disIndex + 2, displayValue.length);
+        value *= -1;
+        displayValue = remainder + value;
+        mainDisplayValue = value;
+        showBothDisplays();
+    } else {
+        mainDisplayValue = String(mainDisplayValue * -1);
+        displayValue = mainDisplayValue;
         showBothDisplays();
     }
 })
@@ -77,6 +97,14 @@ multiplyButton.addEventListener("click", function() {
 equalButton.addEventListener("click", function() {
     if (mainDisplayValue === finalValue) {
         console.log("");
+    } else if (displayValue[0] === "-" && operator === "-") {
+        var splittedValues = displayValue.split("-", 3);
+        value1 = Number(splittedValues[1] * -1)
+        value2 = Number(splittedValues[2]);
+        console.log(splittedValues);
+        finalValue = Math.round(operate(operator, value1, value2) * 100) / 100;
+        mainDisplayValue = finalValue;
+        showBothDisplays(); 
     } else if (displayValue.includes(operator) === true) {
         var splittedValues = displayValue.split(operator);
         value1 = Number(splittedValues[0])
@@ -105,6 +133,7 @@ function newValues() {
 clearButton.addEventListener("click", function() {
     if (displayValue[displayValue.length - 1] === " ") {
         displayValue = displayValue.substring(0, displayValue.length - 2);
+        operator = "a";
         newValues();
     } else  {
         displayValue = displayValue.substring(0, displayValue.length - 1);
